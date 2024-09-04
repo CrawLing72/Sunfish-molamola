@@ -12,6 +12,7 @@ myScreen = pygame.display.set_mode((globs.WINDOW_WIDTH,globs.WINDOW_HEIGHT))
 
 helloWolrd = probs.Text("Hello, world!", globs.COMMON_FONT)
 elainaImage = probs.Image("./Resources/Animation/Elaina_Sliced/images/Elaina_Right_01.png")
+elainaButton = probs.Button("./Resources/Animation/Elaina_Sliced/images/Elaina_Right_01.png", print("Hello, Button"))
 
 #Game Loop
 while True:
