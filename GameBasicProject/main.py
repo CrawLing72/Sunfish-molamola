@@ -17,7 +17,7 @@ elainaButton = probs.Button("./Resources/Animation/Elaina_Sliced/images/Elaina_R
 #Game Loop
 while True:
     myScreen.fill(globs.black)
-    elainaButton.draw(globs.WINDOW_WIDTH/2, globs.WINDOW_HEIGHT/2, 45, 45, myScreen)
+    elainaButton.draw(globs.WINDOW_WIDTH/2, globs.WINDOW_HEIGHT/2, myScreen)
     elainaButton.detection()
 
     for event in pygame.event.get():
