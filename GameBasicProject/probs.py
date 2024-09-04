@@ -35,9 +35,8 @@ class Button:
         self.rect = self.img.get_rect()
         self.func = evnetfunc
 
-    def draw(self, x:int, y:int, width: int, height: int, screen: pygame.display):
+    def draw(self, x: int, y: int, screen: pygame.display):
         self.rect.center = (x, y)
-        self.rect.width = width, self.rect.height = height
 
         screen.blit(self.img, self.rect)
 
@@ -46,4 +45,5 @@ class Button:
         click = pygame.mouse.get_pressed()
 
         if self.rect.x <= mouse[0] <= self.rect.x + self.rect.width and self.rect.y <= mouse[1] <= self.rect.y + self.rect.height:
-            self.func()
+            if click[0]:
+                self.func()
