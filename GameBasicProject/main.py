@@ -11,11 +11,12 @@ pygame.display.set_caption('Frieren : Beyond Journey')
 myScreen = pygame.display.set_mode((globs.WINDOW_WIDTH,globs.WINDOW_HEIGHT))
 
 helloWolrd = probs.Text("Hello, world!", globs.COMMON_FONT)
+elainaImage = probs.Image("./Resources/Animation/Elaina_Sliced/images/Elaina_Right_01.png")
 
 #Game Loop
 while True:
     myScreen.fill(globs.black)
-    helloWolrd.draw(myScreen, globs.WINDOW_WIDTH/2, globs.WINDOW_HEIGHT/2)
+    elainaImage.draw(myScreen, globs.WINDOW_WIDTH/2, globs.WINDOW_HEIGHT/2)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
