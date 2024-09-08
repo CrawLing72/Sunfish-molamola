@@ -27,6 +27,9 @@ class Image:
         self.rect.center = (x, y)
         screen.blit(self.imageObj, self.rect)
 
+    def adjust(self, x: int, y: int):
+        self.imageObj = pygame.transform.scale(self.imageObj, (x, y))
+
 
 class Button:
     def __init__(self, imgsrc:str, evnetfunc: object = None):
