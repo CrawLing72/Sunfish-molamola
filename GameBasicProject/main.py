@@ -21,12 +21,13 @@ elainaButton = probs.Button("./Resources/Animation/Elaina_Sliced/images/Elaina_R
 while True:
     myScreen.fill(globs.black)
     elainaButton.draw(globs.WINDOW_WIDTH/2, globs.WINDOW_HEIGHT/2, myScreen)
-    elainaButton.detection()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+        if event.type == pygame.KEYDOWN:
+            elainaButton.detection()
 
     keyEvent = pygame.key.get_pressed()
     if keyEvent[pygame.K_w]:
