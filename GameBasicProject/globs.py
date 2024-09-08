@@ -1,8 +1,8 @@
 import pygame
 
 #Screen Parameter
-WINDOW_WIDTH = 640
-WINDOW_HEIGHT = 320
+WINDOW_WIDTH = 720
+WINDOW_HEIGHT = 480
 
 #Font Parameter
 COMMON_FONT = 'Arial'

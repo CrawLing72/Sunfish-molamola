@@ -8,7 +8,7 @@ import system
 pygame.init()
 pygame.display.set_caption('Sunfish : Mola Mola')
 
-myScreen = pygame.display.set_mode((globs.WINDOW_WIDTH,globs.WINDOW_HEIGHT))
+myScreen = pygame.display.set_mode((globs.WINDOW_WIDTH,globs.WINDOW_HEIGHT),pygame.FULLSCREEN)
 
 #Game Loop
 def rungame():
