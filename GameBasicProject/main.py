@@ -31,10 +31,13 @@ def rungame():
 
 def main_menu():
     button = probs.Button("./Resources/Animation/Elaina_Sliced/images/Elaina_Right_01.png", rungame)
+    mainimg = probs.Image("./Resources/imgs/MainArt.png")
+
     while True:
         myScreen.fill(globs.black)
 
-        button.draw(globs.WINDOW_WIDTH/2, globs.WINDOW_HEIGHT/2, myScreen)
+        mainimg.draw(myScreen, globs.WINDOW_WIDTH/2, globs.WINDOW_HEIGHT/2)
+        button.draw(globs.WINDOW_WIDTH / 2, globs.WINDOW_HEIGHT / 2, myScreen)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
