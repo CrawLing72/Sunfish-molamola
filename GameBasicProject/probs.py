@@ -7,7 +7,7 @@ class Text:
         self.string = text
         self.font = font
 
-        self.textFont = pygame.font.SysFont(font, 50)
+        self.textFont = pygame.font.Font(font, 50)
         self.text = self.textFont.render(text, True, globs.white)
 
         self.rect = self.text.get_rect()
