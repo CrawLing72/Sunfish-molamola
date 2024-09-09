@@ -10,13 +10,18 @@ import system
 pygame.init()
 pygame.display.set_caption('Sunfish : Mola Mola')
 
-myScreen = pygame.display.set_mode((globs.WINDOW_WIDTH,globs.WINDOW_HEIGHT), pygame.FULLSCREEN)
+myScreen = pygame.display.set_mode((globs.WINDOW_WIDTH,globs.WINDOW_HEIGHT))
+
+clock = pygame.time.Clock()
 
 #Game Loop
 def rungame():
-    while True:
-        myScreen.fill(globs.BLACK)
 
+    world = system.World(globs.TILE_SIZE, globs.CHUNK_SIZE)
+    player_x, player_y = globs.WINDOW_WIDTH/2, globs.WINDOW_HEIGHT/2
+    world_offset_x, world_offset_y = 0, 0
+
+    while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -24,11 +29,21 @@ def rungame():
 
         keyEvent = pygame.key.get_pressed()
         if keyEvent[pygame.K_w]:
-            print("W Released!")
+            world_offset_y += globs.PLAYER_SPEED
         elif keyEvent[pygame.K_s]:
-            print("S Released!")
+            world_offset_y -= globs.PLAYER_SPEED
+        elif keyEvent[pygame.K_a]:
+            world_offset_x += globs.PLAYER_SPEED
+        elif keyEvent[pygame.K_d]:
+            world_offset_x -= globs.PLAYER_SPEED
+
+        myScreen.fill(globs.BLACK)
+
+        world.draw(myScreen, player_x, player_y, world_offset_x, world_offset_y)
 
         pygame.display.update()
+
+        clock.tick(globs.FPS)
 
 
 def main_menu():
