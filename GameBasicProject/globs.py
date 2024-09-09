@@ -13,7 +13,7 @@ BLACK = (0,0,0)
 WHITE = (255,255,255)
 
 ## chunk and tiles
-TILE_SIZE = 8
+TILE_SIZE = 16
 CHUNK_SIZE = 64
 
 ## Player Movement Related
