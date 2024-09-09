@@ -8,5 +8,5 @@ WINDOW_HEIGHT = 702
 COMMON_FONT = "./Resources/NanumMyeongjoBold.ttf"
 
 #Color Parameter
-black = (0,0,0)
-white = (255,255,255)
+BLACK = (0,0,0)
+WHITE = (255,255,255)

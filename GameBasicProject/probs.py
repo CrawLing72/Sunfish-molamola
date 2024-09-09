@@ -3,12 +3,12 @@ import globs
 
 
 class Text:
-    def __init__(self, text: str, font: str):
+    def __init__(self, text: str, font: str, textsize: int, color: tuple):
         self.string = text
         self.font = font
 
-        self.textFont = pygame.font.Font(font, 50)
-        self.text = self.textFont.render(text, True, globs.white)
+        self.textFont = pygame.font.Font(font, textsize)
+        self.text = self.textFont.render(text, True, color)
 
         self.rect = self.text.get_rect()
 
