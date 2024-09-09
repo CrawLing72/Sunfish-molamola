@@ -4,6 +4,8 @@ import globs
 import probs
 import system
 
+#Note : Now on Contribution!
+
 #pygame initialization
 pygame.init()
 pygame.display.set_caption('Sunfish : Mola Mola')
