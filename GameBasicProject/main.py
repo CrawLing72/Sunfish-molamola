@@ -8,7 +8,7 @@ import system
 pygame.init()
 pygame.display.set_caption('Sunfish : Mola Mola')
 
-myScreen = pygame.display.set_mode((globs.WINDOW_WIDTH,globs.WINDOW_HEIGHT))
+myScreen = pygame.display.set_mode((globs.WINDOW_WIDTH,globs.WINDOW_HEIGHT), pygame.FULLSCREEN)
 
 #Game Loop
 def rungame():
@@ -30,7 +30,7 @@ def rungame():
 
 
 def main_menu():
-    button = probs.Button("./Resources/Animation/Elaina_Sliced/images/Elaina_Right_01.png", rungame)
+    button = probs.Button("./Resources/imgs/Sunfish_White.png", rungame)
     mainimage = probs.Image("./Resources/imgs/MainArt.png")
 
     while True:
