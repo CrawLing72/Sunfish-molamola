@@ -17,6 +17,7 @@ WHITE = (255,255,255)
 TILE_SIZE = 48
 CHUNK_SIZE = 24
 
+
 ## Player Movement Related
 PLAYER_SPEED = 5
 
