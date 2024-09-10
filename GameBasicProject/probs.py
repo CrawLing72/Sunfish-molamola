@@ -59,7 +59,7 @@ class Character:
     def __init__(self, imgsrc:dict, target_fps:int, x:int, y:int):
         self.imagedict = imgsrc
         self.imgsrc = []
-        self.target_seconds = 1 / target_fps
+        self.target_seconds = target_fps
         self.x = x
         self.y = y
         self.animation_index = 0
@@ -71,15 +71,12 @@ class Character:
             self.imgsrc = self.imagedict["a"]
         elif (x_offset > 0):
             self.imgsrc = self.imagedict["d"]
-
-        if(y_offset < 0):
+        elif(y_offset < 0):
             self.imgsrc = self.imagedict["s"]
         elif (y_offset > 0):
             self.imgsrc = self.imagedict["w"]
-
-        if(x_offset == 0 and y_offset == 0):
+        else:
             self.imgsrc = self.imagedict["e"]
-
 
     def draw(self, screen:pygame.display, x_dist: int, y_dist: int, deltatime:float):
         self.decision_src(x_dist, y_dist)
@@ -92,6 +89,9 @@ class Character:
                 self.animation_index += 1
             else:
                 self.animation_index = 0
+
+        if(self.animation_index > len(self.imgsrc) - 1):
+            self.animation_index = 0
 
         self.imgsrc[self.animation_index].draw(screen, self.x, self.y)
 
