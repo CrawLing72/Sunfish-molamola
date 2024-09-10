@@ -10,7 +10,7 @@ import system
 pygame.init()
 pygame.display.set_caption('Sunfish : Mola Mola')
 
-myScreen = pygame.display.set_mode((globs.WINDOW_WIDTH,globs.WINDOW_HEIGHT))
+myScreen = pygame.display.set_mode((globs.WINDOW_WIDTH,globs.WINDOW_HEIGHT), pygame.FULLSCREEN)
 
 clock = pygame.time.Clock()
 
@@ -20,6 +20,9 @@ def rungame():
     world = system.World(globs.TILE_SIZE, globs.CHUNK_SIZE)
     player_x, player_y = globs.WINDOW_WIDTH/2, globs.WINDOW_HEIGHT/2
     world_offset_x, world_offset_y = 0, 0
+
+    sunfish = probs.Image("./Resources/imgs/images/ocean_sunfish.png")
+    sunfish.adjust(128, 128)
 
     while True:
         for event in pygame.event.get():
@@ -40,6 +43,7 @@ def rungame():
         myScreen.fill(globs.BLACK)
 
         world.draw(myScreen, player_x, player_y, world_offset_x, world_offset_y)
+        sunfish.draw(myScreen, globs.WINDOW_WIDTH / 2, globs.WINDOW_HEIGHT / 2)
 
         pygame.display.update()
 

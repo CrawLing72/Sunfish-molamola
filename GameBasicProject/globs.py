@@ -13,12 +13,17 @@ BLACK = (0,0,0)
 WHITE = (255,255,255)
 
 ## chunk and tiles
-TILE_SIZE = 16
-CHUNK_SIZE = 64
+TILE_SIZE = 48
+CHUNK_SIZE = 24
 
 ## Player Movement Related
 PLAYER_SPEED = 5
 
 ## Env Related
-WORLD_SEED = 1
+WORLD_SEED = 12
 FPS = 60
+
+# Tile Path
+SEA = "./Resources/imgs/images/normalsea.png"
+GROUND = "./Resources/imgs/images/ground.png"
+DEEPSEA = "./Resources/imgs/images/deepsea.png"
