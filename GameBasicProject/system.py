@@ -12,6 +12,7 @@ class Chunk:
         self.chunk_size = chunk_size
         self.world_seed = globs.WORLD_SEED
         self.tiles = self.generate_tiles()
+        self.tile_imgs = {0:pygame.image.load(globs.SEA), 1:pygame.image.load(globs.DEEPSEA), 2:pygame.image.load(globs.GROUND)}
 
     def generate_tiles(self):
         tiles = []
@@ -29,19 +30,23 @@ class Chunk:
 
     def getTileByNoise(self, noise_value):
         if noise_value < -0.1:
-            color = (0, 0, 255)  # 물
+            img = 2
         elif noise_value < 0.1:
-            color = (34, 139, 34)  # 평지
+            img = 1  # 육지
         else:
-            color = (136, 69, 19)  # 산  # 디버깅 출력
-        return color
+            img = 0  # 심해  # 디버깅 출력
+        return img
 
     def draw(self, screen, offset_x, offset_y):
         for i, row in enumerate(self.tiles):
             for j, tile in enumerate(row):
                 x = self.world_x + i * self.tile_size + offset_x
                 y = self.world_y + j * self.tile_size + offset_y
-                pygame.draw.rect(screen, tile, (x, y, self.tile_size, self.tile_size))
+                temp_tile = self.tile_imgs[tile]
+                temp_rect = temp_tile.get_rect()
+                temp_rect.center = (x, y)
+                screen.blit(temp_tile, temp_rect)
+
 
 
 class World:

@@ -21,7 +21,14 @@ def rungame():
     player_x, player_y = globs.WINDOW_WIDTH/2, globs.WINDOW_HEIGHT/2
     world_offset_x, world_offset_y = 0, 0
 
+    sunfish = probs.Character(globs.ANIPATH,4, player_x, player_y)
+    Coordinate_text = probs.Text("X : ???, Y : ???", globs.COMMON_FONT, 20, globs.WHITE)
+
+    delta_time = clock.tick(60) / 1000.0
+
+
     while True:
+        movement_vector = [0, 0]
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -29,17 +36,25 @@ def rungame():
 
         keyEvent = pygame.key.get_pressed()
         if keyEvent[pygame.K_w]:
-            world_offset_y += globs.PLAYER_SPEED
+            world_offset_y += globs.PLAYER_SPEED * delta_time
+            movement_vector[1] = globs.PLAYER_SPEED
         elif keyEvent[pygame.K_s]:
-            world_offset_y -= globs.PLAYER_SPEED
+            world_offset_y -= globs.PLAYER_SPEED * delta_time
+            movement_vector[1] = -globs.PLAYER_SPEED
         elif keyEvent[pygame.K_a]:
-            world_offset_x += globs.PLAYER_SPEED
+            world_offset_x += globs.PLAYER_SPEED * delta_time
+            movement_vector[0] = globs.PLAYER_SPEED
         elif keyEvent[pygame.K_d]:
-            world_offset_x -= globs.PLAYER_SPEED
+            world_offset_x -= globs.PLAYER_SPEED * delta_time
+            movement_vector[0] = -globs.PLAYER_SPEED
 
         myScreen.fill(globs.BLACK)
 
         world.draw(myScreen, player_x, player_y, world_offset_x, world_offset_y)
+        sunfish.draw(myScreen, movement_vector[0], movement_vector[1], delta_time)
+
+        Coordinate_text.string = f"X: {-int(world_offset_x/globs.TILE_SIZE)}, Y: {int(world_offset_y/globs.TILE_SIZE)}"
+        Coordinate_text.draw(myScreen, 100, 25)
 
         pygame.display.update()
 
