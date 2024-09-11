@@ -12,7 +12,7 @@ class Chunk:
         self.chunk_size = chunk_size
         self.world_seed = globs.WORLD_SEED
         self.tiles = self.generate_tiles()
-        self.tile_imgs = {0:pygame.image.load(globs.SEA), 1:pygame.image.load(globs.DEEPSEA), 2:pygame.image.load(globs.GROUND)}
+        self.tile_imgs = {0: probs.Image(globs.SEA), 1: probs.Image(globs.DEEPSEA), 2: probs.Image(globs.GROUND)}
 
     def generate_tiles(self):
         tiles = []
@@ -43,9 +43,7 @@ class Chunk:
                 x = self.world_x + i * self.tile_size + offset_x
                 y = self.world_y + j * self.tile_size + offset_y
                 temp_tile = self.tile_imgs[tile]
-                temp_rect = temp_tile.get_rect()
-                temp_rect.center = (x, y)
-                screen.blit(temp_tile, temp_rect)
+                temp_tile.draw(screen, x, y)
 
 
 

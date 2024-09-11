@@ -21,10 +21,11 @@ class Text:
 
 
 class Image:
-    def __init__(self, src: str):
+    def __init__(self, src: str, name:str = None):
         self.src = src
         self.imageObj = pygame.image.load(src)
         self.rect = self.imageObj.get_rect()
+        self.name = name
 
     def draw(self, screen:pygame.display, x: int, y: int):
         self.rect.center = (x, y)
