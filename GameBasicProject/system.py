@@ -7,7 +7,7 @@ import numpy as np
 class Chunk:
     def __init__(self, world_x, world_y, tile_size, chunk_size):
         self.world_x = world_x
-        self.world_y = world_y
+        self.world_y = world_y # pygame coordinate
         self.tile_size = tile_size
         self.chunk_size = chunk_size
         self.world_seed = globs.WORLD_SEED
@@ -20,8 +20,8 @@ class Chunk:
         for i in range(self.chunk_size):
             row = []
             for j in range(self.chunk_size):
-                world_tile_x = self.world_x + i
-                world_tile_y = self.world_y + j
+                world_tile_x = self.world_x + j
+                world_tile_y = self.world_y + i
                 noise_value = noise.pnoise2(world_tile_x / scale, world_tile_y / scale, octaves=6, base=self.world_seed)
                 # Perin Noise기반 Connectivity 노리기
                 row.append(self.getTileByNoise(noise_value))
@@ -40,8 +40,8 @@ class Chunk:
     def draw(self, screen, offset_x, offset_y):
         for i, row in enumerate(self.tiles):
             for j, tile in enumerate(row):
-                x = self.world_x + i * self.tile_size + offset_x
-                y = self.world_y + j * self.tile_size + offset_y
+                x = self.world_x + j * self.tile_size + offset_x
+                y = self.world_y + i * self.tile_size + offset_y #j가 column, i가 row index가 되어야 함에 유의할 것
                 temp_tile = self.tile_imgs[tile]
                 temp_tile.draw(screen, x, y)
 
@@ -65,6 +65,7 @@ class World:
         return self.chunks[(chunk_x, chunk_y)]
 
     def draw(self, screen, player_x, player_y, offset_x, offset_y):
+        ## WARNING :: Chunk Coordinate is USING PYGAME COORDINATE
         current_chunk_x = int(-offset_x) // (self.chunk_size * self.tile_size)
         current_chunk_y = int(-offset_y) // (self.chunk_size * self.tile_size)
 
@@ -72,3 +73,12 @@ class World:
             for dy in range(0, 3):
                 chunk = self.get_chunk(current_chunk_x + dx, current_chunk_y + dy)
                 chunk.draw(screen, offset_x, offset_y)
+
+
+    def get_tile_info(self, offset_x, offset_y):
+        current_chunk_x = int(-offset_x) // (self.chunk_size * self.tile_size)
+        current_chunk_y = int(-offset_y) // (self.chunk_size * self.tile_size)
+        current_chunk = self.chunks[(current_chunk_x, current_chunk_y)].tiles
+        for i in range(0, self.chunk_size):
+            print(current_chunk[i])
+        print("-----------------------------------------------------")

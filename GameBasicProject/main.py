@@ -10,7 +10,7 @@ import system
 pygame.init()
 pygame.display.set_caption('Sunfish : Mola Mola')
 
-myScreen = pygame.display.set_mode((globs.WINDOW_WIDTH,globs.WINDOW_HEIGHT), pygame.FULLSCREEN)
+myScreen = pygame.display.set_mode((globs.WINDOW_WIDTH,globs.WINDOW_HEIGHT))
 
 clock = pygame.time.Clock()
 
@@ -23,6 +23,7 @@ def rungame():
 
     sunfish = probs.Character(globs.ANIPATH,8, player_x, player_y)
     Coordinate_text = probs.Text("X : ???, Y : ???", globs.COMMON_FONT, 20, globs.WHITE)
+    # WARNING : Coordinate text is just displaying. Please CONSIDER PYGAME SYSTEM!
 
     delta_time = clock.tick(60) / 1000.0
 
@@ -47,6 +48,8 @@ def rungame():
         elif keyEvent[pygame.K_d]:
             world_offset_x -= globs.PLAYER_SPEED * delta_time
             movement_vector[0] = -globs.PLAYER_SPEED
+        elif keyEvent[pygame.K_SPACE]:
+            world.get_tile_info(world_offset_x, world_offset_y)
 
         myScreen.fill(globs.BLACK)
 
