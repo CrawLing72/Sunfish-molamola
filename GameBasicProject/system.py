@@ -2,6 +2,7 @@ import pygame
 import globs
 import probs
 import noise
+import math
 import numpy as np
 
 class Chunk:
@@ -76,9 +77,11 @@ class World:
 
 
     def get_tile_info(self, offset_x, offset_y):
-        current_chunk_x = int(-offset_x) // (self.chunk_size * self.tile_size)
-        current_chunk_y = int(-offset_y) // (self.chunk_size * self.tile_size)
+        current_chunk_x = math.floor((globs.WINDOW_WIDTH/2 -offset_x) / (self.chunk_size * self.tile_size)) # Consider that Character is always on center. and also consider COORDINATE!
+        current_chunk_y = math.floor((globs.WINDOW_HEIGHT/2 -offset_y) / (self.chunk_size * self.tile_size))
+
         current_chunk = self.chunks[(current_chunk_x, current_chunk_y)].tiles
+
         for i in range(0, self.chunk_size):
             print(current_chunk[i])
-        print("-----------------------------------------------------")
+        print("-----------------------------")
