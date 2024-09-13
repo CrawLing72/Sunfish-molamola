@@ -67,11 +67,11 @@ class World:
 
     def draw(self, screen, player_x, player_y, offset_x, offset_y):
         ## WARNING :: Chunk Coordinate is USING PYGAME COORDINATE
-        current_chunk_x = int(-offset_x) // (self.chunk_size * self.tile_size)
-        current_chunk_y = int(-offset_y) // (self.chunk_size * self.tile_size)
+        current_chunk_x = int(globs.WINDOW_WIDTH/2 -offset_x) // (self.chunk_size * self.tile_size)
+        current_chunk_y = int(globs.WINDOW_HEIGHT/2 -offset_y) // (self.chunk_size * self.tile_size)
 
-        for dx in range(0, 3):
-            for dy in range(0, 3):
+        for dx in range(-1, 2):
+            for dy in range(-1, 2):
                 chunk = self.get_chunk(current_chunk_x + dx, current_chunk_y + dy)
                 chunk.draw(screen, offset_x, offset_y)
 
