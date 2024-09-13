@@ -66,7 +66,6 @@ class World:
         return self.chunks[(chunk_x, chunk_y)]
 
     def draw(self, screen, player_x, player_y, offset_x, offset_y):
-        ## WARNING :: Chunk Coordinate is USING PYGAME COORDINATE
         current_chunk_x = int(globs.WINDOW_WIDTH/2 -offset_x) // (self.chunk_size * self.tile_size)
         current_chunk_y = int(globs.WINDOW_HEIGHT/2 -offset_y) // (self.chunk_size * self.tile_size)
 
@@ -80,8 +79,19 @@ class World:
         current_chunk_x = math.floor((globs.WINDOW_WIDTH/2 -offset_x) / (self.chunk_size * self.tile_size)) # Consider that Character is always on center. and also consider COORDINATE!
         current_chunk_y = math.floor((globs.WINDOW_HEIGHT/2 -offset_y) / (self.chunk_size * self.tile_size))
 
-        current_chunk = self.chunks[(current_chunk_x, current_chunk_y)].tiles
+        current_chunk = self.chunks[(current_chunk_x, current_chunk_y)]
+        chunk_tiles = current_chunk.tiles
 
-        for i in range(0, self.chunk_size):
-            print(current_chunk[i])
-        print("-----------------------------")
+        chunk_world_x = current_chunk.world_x
+        chunk_world_y = current_chunk.world_y
+
+        player_x = globs.WINDOW_WIDTH / 2 - offset_x
+        player_y = globs.WINDOW_HEIGHT / 2 - offset_y
+
+        index_row = int(abs(chunk_world_y - player_y//self.tile_size)) # Row 계산하는 쪽에 보정치 추가좀
+        index_col = int(abs(chunk_world_x - player_x//self.tile_size))
+
+        print("----------------")
+        print(index_row, index_col)
+        print(chunk_tiles[index_row][index_col])
+
