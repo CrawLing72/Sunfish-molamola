@@ -75,9 +75,60 @@ class World:
                 chunk = self.get_chunk(current_chunk_x + dx, current_chunk_y + dy)
                 chunk.draw(screen, offset_x, offset_y)
 
-
     def get_tile_info(self, offset_x, offset_y):
-        current_chunk_x = math.floor((globs.WINDOW_WIDTH/2 -offset_x + self.tile_size) / (self.chunk_size * self.tile_size)) # Consider that Character is always on center. and also consider COORDINATE!
-        current_chunk_y = math.floor((globs.WINDOW_HEIGHT/2 -offset_y + self.tile_size) / (self.chunk_size * self.tile_size))
+        # 화면 중앙 좌표 (플레이어가 항상 고정된 위치)
+        screen_center_x = globs.WINDOW_WIDTH // 2
+        screen_center_y = globs.WINDOW_HEIGHT // 2
 
-        current_chunk = self.chunks[(current_chunk_x, current_chunk_y)].tiles
+        # 플레이어의 월드 좌표 (화면 중앙 기준으로 오프셋 적용)
+        world_center_x = screen_center_x - offset_x
+        world_center_y = screen_center_y - offset_y
+
+        # 타일 크기의 절반 값을 보정하여 타일 중심을 기준으로 계산
+        world_center_x += self.tile_size // 2
+        world_center_y += self.tile_size // 2
+
+        # 청크 좌표 계산
+        current_chunk_x = math.floor(world_center_x / (self.chunk_size * self.tile_size))
+        current_chunk_y = math.floor(world_center_y / (self.chunk_size * self.tile_size))
+
+        # 현재 청크 가져오기
+        if (current_chunk_x, current_chunk_y) not in self.chunks:
+            print(f"Chunk ({current_chunk_x}, {current_chunk_y}) not found!")
+            return None
+
+        current_chunk = self.chunks[(current_chunk_x, current_chunk_y)]
+        chunk_tiles = current_chunk.tiles
+
+        # 청크 내에서 타일 좌표 계산 (타일의 중심을 기준으로 계산)
+        tile_x_in_chunk = int((world_center_x - current_chunk.world_x) // self.tile_size)
+        tile_y_in_chunk = int((world_center_y - current_chunk.world_y) // self.tile_size)
+
+        # 경계 처리를 위해 타일 인덱스가 청크 범위를 벗어나는지 확인
+        if tile_x_in_chunk >= self.chunk_size:
+            current_chunk_x += 1
+            tile_x_in_chunk = 0
+        elif tile_x_in_chunk < 0:
+            current_chunk_x -= 1
+            tile_x_in_chunk = self.chunk_size - 1
+
+        if tile_y_in_chunk >= self.chunk_size:
+            current_chunk_y += 1
+            tile_y_in_chunk = 0
+        elif tile_y_in_chunk < 0:
+            current_chunk_y -= 1
+            tile_y_in_chunk = self.chunk_size - 1
+
+        # 경계를 넘어서면 새로운 청크에서 타일을 가져오기
+        if (current_chunk_x, current_chunk_y) in self.chunks:
+            current_chunk = self.chunks[(current_chunk_x, current_chunk_y)]
+            chunk_tiles = current_chunk.tiles
+
+            # 타일 정보 출력
+            if 0 <= tile_x_in_chunk < self.chunk_size and 0 <= tile_y_in_chunk < self.chunk_size:
+                print(f"Player is at tile: ({tile_y_in_chunk}, {tile_x_in_chunk})")
+                print(chunk_tiles[tile_y_in_chunk][tile_x_in_chunk])
+            else:
+                print("Invalid tile index!")
+        else:
+            print(f"Chunk ({current_chunk_x}, {current_chunk_y}) not found!")
