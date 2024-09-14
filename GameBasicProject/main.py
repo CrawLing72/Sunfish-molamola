@@ -49,7 +49,7 @@ def rungame():
             world_offset_x -= globs.PLAYER_SPEED * delta_time
             movement_vector[0] = -globs.PLAYER_SPEED
         elif keyEvent[pygame.K_SPACE]:
-            world.get_tile_info(world_offset_x, world_offset_y)
+            print(world.get_tile_info(world_offset_x, world_offset_y))
 
         myScreen.fill(globs.BLACK)
 
