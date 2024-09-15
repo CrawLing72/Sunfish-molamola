@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ed9e25bb-bb3f-4ee3-bdf4-2b26e700a599" name="Changes" comment="Coordination System Modified">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameBasicProject/globs.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameBasicProject/globs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameBasicProject/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameBasicProject/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GameBasicProject/system.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameBasicProject/system.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +40,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -87,7 +88,9 @@
       <workItem from="1725510815591" duration="2055000" />
       <workItem from="1725515087782" duration="283000" />
       <workItem from="1725515392685" duration="625000" />
-      <workItem from="1726188385590" duration="3039000" />
+      <workItem from="1726188385590" duration="3080000" />
+      <workItem from="1726361375195" duration="904000" />
+      <workItem from="1726371261493" duration="3664000" />
     </task>
     <task id="LOCAL-00001" summary="testing started!">
       <created>1725417922866</created>
@@ -166,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1726119398148</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Coordination System Modified">
+      <created>1726194555473</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1726194555473</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,8 +206,8 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/FrierenFanGame$globs.coverage" NAME="globs Coverage Results" MODIFIED="1725940488179" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GameBasicProject" />
-    <SUITE FILE_PATH="coverage/FrierenFanGame$main.coverage" NAME="main Coverage Results" MODIFIED="1726194487721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GameBasicProject" />
-    <SUITE FILE_PATH="coverage/FrierenFanGame$system.coverage" NAME="system Coverage Results" MODIFIED="1726194480030" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GameBasicProject" />
-    <SUITE FILE_PATH="coverage/FrierenFanGame$probs.coverage" NAME="probs Coverage Results" MODIFIED="1725930263733" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GameBasicProject" />
+    <SUITE FILE_PATH="coverage/FrierenFanGame$main.coverage" NAME="main Coverage Results" MODIFIED="1726375894789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GameBasicProject" />
+    <SUITE FILE_PATH="coverage/FrierenFanGame$system.coverage" NAME="system Coverage Results" MODIFIED="1726194527209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GameBasicProject" />
+    <SUITE FILE_PATH="coverage/FrierenFanGame$probs.coverage" NAME="probs Coverage Results" MODIFIED="1726361399574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GameBasicProject" />
   </component>
 </project>
