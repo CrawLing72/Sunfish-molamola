@@ -11,7 +11,7 @@ pygame.init()
 pygame.display.set_caption('Sunfish : Mola Mola')
 pygame.display.set_icon(pygame.image.load("./Resources/imgs/images/ocean_sunfish_128.png"))
 
-myScreen = pygame.display.set_mode((globs.WINDOW_WIDTH,globs.WINDOW_HEIGHT))
+myScreen = pygame.display.set_mode((globs.WINDOW_WIDTH,globs.WINDOW_HEIGHT), pygame.FULLSCREEN)
 
 clock = pygame.time.Clock()
 
