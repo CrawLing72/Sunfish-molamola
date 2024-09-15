@@ -13,7 +13,9 @@ class Chunk:
         self.chunk_size = chunk_size
         self.world_seed = globs.WORLD_SEED
         self.tiles = self.generate_tiles()
+        self.obj_tiles = self.generate_objs()
         self.tile_imgs = {0: probs.Image(globs.SEA), 1: probs.Image(globs.DEEPSEA), 2: probs.Image(globs.GROUND)}
+        self.obj_imgs = {0: probs.Image(globs.TREE), 1: probs.Image(globs.GRASS)}
 
     def generate_tiles(self):
         tiles = []
@@ -25,20 +27,46 @@ class Chunk:
                 world_tile_y = self.world_y + i
                 noise_value = noise.pnoise2(world_tile_x / scale, world_tile_y / scale, octaves=6, base=self.world_seed)
                 # Perin Noise기반 Connectivity 노리기
-                row.append(self.getTileByNoise(noise_value))
+                row.append(self.getTileByNoise(noise_value, False))
             tiles.append(row)
         return tiles
 
-    def getTileByNoise(self, noise_value):
-        if noise_value < -0.1:
-            img = 2
-        elif noise_value < 0.1:
-            img = 1  # 육지
+    def generate_objs(self):
+        tiles = []
+        scale = 100
+        for i in range(self.chunk_size):
+            row = []
+            for j in range(self.chunk_size):
+                world_tile_x = self.world_x + j
+                world_tile_y = self.world_y + i
+                noise_value = noise.pnoise2(world_tile_x / scale, world_tile_y / scale, octaves=6, base=self.world_seed)
+                # Perin Noise기반 Connectivity 노리기
+                row.append(self.getTileByNoise(noise_value, True))
+            tiles.append(row)
+        return tiles
+
+    def getTileByNoise(self, noise_value, objmode: bool):
+        if(objmode):
+            if -0.16 < noise_value < -0.15 or -0.13 < noise_value < -0.12:
+                img = 1
+            elif -0.115 <= noise_value < -0.119 or -0.18 < noise_value < -0.179 :
+                img = 0
+            elif -0.3 < noise_value < -0.25:
+                img = 1
+            else:
+                img = -1
+            return img
         else:
-            img = 0  # 심해  # 디버깅 출력
-        return img
+            if noise_value < -0.1:
+                img = 2
+            elif noise_value < 0.1:
+                img = 1  # 육지
+            else:
+                img = 0  # 심해  # 디버깅 출력
+            return img
 
     def draw(self, screen, offset_x, offset_y):
+
         for i, row in enumerate(self.tiles):
             for j, tile in enumerate(row):
                 x = self.world_x + j * self.tile_size + offset_x
@@ -46,6 +74,13 @@ class Chunk:
                 temp_tile = self.tile_imgs[tile]
                 temp_tile.draw(screen, x, y)
 
+        for i, row in enumerate(self.obj_tiles):
+            for j, tile in enumerate(row):
+                if tile >= 0:
+                    x = self.world_x + j * self.tile_size + offset_x
+                    y = self.world_y + i * self.tile_size + offset_y
+                    temp_tile = self.obj_imgs[tile]
+                    temp_tile.draw(screen, x, y)
 
 
 class World:
