@@ -15,7 +15,8 @@ class Chunk:
         self.tiles = self.generate_tiles()
         self.obj_tiles = self.generate_objs()
         self.tile_imgs = {0: probs.Image(globs.SEA), 1: probs.Image(globs.DEEPSEA), 2: probs.Image(globs.GROUND)}
-        self.obj_imgs = {0: probs.Image(globs.TREE), 1: probs.Image(globs.GRASS)}
+        self.obj_imgs = {0: probs.Image(globs.TREE), 1: probs.Image(globs.GRASS), 2: probs.Image(globs.MOLAMOLA)}
+        self.obj_imgs[2].adjust(45, 45)
 
     def generate_tiles(self):
         tiles = []
@@ -51,16 +52,18 @@ class Chunk:
                 img = 1
             elif -0.115 <= noise_value < -0.119 or -0.18 < noise_value < -0.179 :
                 img = 0
-            elif -0.3 < noise_value < -0.25:
+            elif -0.3 < noise_value < -0.27:
                 img = 1
+            elif 0 < noise_value < 0.0001 or 0.15 < noise_value < 0.1501 or 0.16 < noise_value < 0.1601:
+                img = 2
             else:
                 img = -1
             return img
         else:
             if noise_value < -0.1:
-                img = 2
+                img = 2 # 육지
             elif noise_value < 0.1:
-                img = 1  # 육지
+                img = 1  # 바다
             else:
                 img = 0  # 심해  # 디버깅 출력
             return img

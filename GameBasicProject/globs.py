@@ -31,6 +31,7 @@ GROUND = "./Resources/imgs/images/ground.png"
 DEEPSEA = "./Resources/imgs/images/deepsea.png"
 TREE = "./Resources/imgs/images/tree.png"
 GRASS = "./Resources/imgs/images/grass.png"
+MOLAMOLA = "./Resources/imgs/images/ocean_sunfish_128.png"
 TILEINFO = {0: "SEA", 1: "DEEPSEA", 2: "GROUND"}
 
 
