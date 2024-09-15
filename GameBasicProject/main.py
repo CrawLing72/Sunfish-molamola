@@ -23,6 +23,7 @@ def rungame():
 
     sunfish = probs.Character(globs.ANIPATH,8, player_x, player_y)
     Coordinate_text = probs.Text("X : ???, Y : ???", globs.COMMON_FONT, 20, globs.WHITE)
+    Tile_text = probs.Text("You are on the ####", globs.COMMON_FONT, 10, globs.WHITE)
     # WARNING : Coordinate text is just displaying. Please CONSIDER PYGAME SYSTEM!
 
     delta_time = clock.tick(60) / 1000.0
@@ -48,8 +49,16 @@ def rungame():
         elif keyEvent[pygame.K_d]:
             world_offset_x -= globs.PLAYER_SPEED * delta_time
             movement_vector[0] = -globs.PLAYER_SPEED
-        elif keyEvent[pygame.K_SPACE]:
-            print(world.get_tile_info(world_offset_x, world_offset_y))
+
+        tile_info = world.get_tile_info(world_offset_x, world_offset_y)
+        if tile_info == 0:
+            globs.PLAYER_SPEED = 7
+        elif tile_info == 1:
+            globs.PLAYER_SPEED = 5
+        elif tile_info == 2:
+            globs.PLAYER_SPEED = 10
+        else:
+            tile_info = 0
 
         myScreen.fill(globs.BLACK)
 
@@ -58,6 +67,8 @@ def rungame():
 
         Coordinate_text.string = f"X: {-int(world_offset_x/globs.TILE_SIZE)}, Y: {int(world_offset_y/globs.TILE_SIZE)}"
         Coordinate_text.draw(myScreen, 100, 25)
+        Tile_text.string = f"You're on the {globs.TILEINFO[tile_info]}!"
+        Tile_text.draw(myScreen, 80, 45)
 
         pygame.display.update()
 
