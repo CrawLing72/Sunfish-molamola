@@ -8,6 +8,7 @@ import system
 
 #pygame initialization
 pygame.init()
+pygame.mixer.init()
 pygame.display.set_caption('Sunfish : Mola Mola')
 pygame.display.set_icon(pygame.image.load("./Resources/imgs/images/ocean_sunfish_128.png"))
 
@@ -30,6 +31,7 @@ def rungame():
     Count_text = probs.Text("You got # molamola!", globs.COMMON_FONT, 20, globs.WHITE)
     Ballons = probs.Image("./Resources/imgs/images/ballon_90px.png")
     Arrows = probs.Image(globs.ARROW)
+    FISHING_SOUND = pygame.mixer.Sound("./Resources/Sounds/fishing.mp3")
     # WARNING : Coordinate text is just displaying. Please CONSIDER PYGAME SYSTEM!
 
     #Time Settings
@@ -81,6 +83,7 @@ def rungame():
         if object_info == 2 and keyEvent[pygame.K_SPACE]:
             world.get_tile_info(world_offset_x, world_offset_y, False, True, -1)
             count_of_molamoala += 1
+            FISHING_SOUND.play()
 
         myScreen.fill(globs.BLACK)
 
