@@ -32,6 +32,7 @@ def rungame():
     Ballons = probs.Image("./Resources/imgs/images/ballon_90px.png")
     Arrows = probs.Image(globs.ARROW)
     FISHING_SOUND = pygame.mixer.Sound("./Resources/Sounds/fishing.mp3")
+    BACKGROUND_MUSIC = pygame.mixer.music.load("./Resources/Sounds/Background.mp3")
     # WARNING : Coordinate text is just displaying. Please CONSIDER PYGAME SYSTEM!
 
     #Time Settings
@@ -41,6 +42,9 @@ def rungame():
     is_ballon_on = False
     count_of_molamoala = 0
 
+    #BACKGROUND MUSIC START
+    pygame.mixer.music.play(loops=-1)
+
     #Game Loop
     while True:
         movement_vector = [0, 0]
@@ -48,6 +52,7 @@ def rungame():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+                pygame.mixer.music.stop()
 
         #Key Event Sector
         keyEvent = pygame.key.get_pressed()
